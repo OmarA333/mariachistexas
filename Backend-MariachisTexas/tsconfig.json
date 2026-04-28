@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
     "outDir": "./dist",
 
     "moduleResolution": "node16",
