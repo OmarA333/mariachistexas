@@ -1,7 +1,11 @@
 import path from 'node:path'
 import { PrismaPg } from '@prisma/adapter-pg'
-import type { PrismaConfig } from 'prisma'
+import { defineConfig } from 'prisma/config'
+import 'dotenv/config'
 
-export default {
+export default defineConfig({
   schema: path.join('prisma', 'schema.prisma'),
-} satisfies PrismaConfig
+  datasource: {
+    url: process.env.DATABASE_URL,
+  },
+})
