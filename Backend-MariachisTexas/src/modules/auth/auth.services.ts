@@ -135,7 +135,7 @@ export const login = async (email: string, password: string) => {
   }
 
   //  Generar JWT
-  const permisos = usuario.rol.rolPermisos.map(rp => rp.permiso.nombre)
+  const permisos = usuario.rol.rolPermisos.map((rp: any) => rp.permiso.nombre)
   const token    = jwt.sign(
     { id: usuario.id, email: usuario.email, rol: usuario.rol.nombre, permisos },
     JWT_SECRET,
