@@ -1,7 +1,7 @@
 import { randomBytes } from 'crypto'
 import bcrypt from 'bcryptjs'
 import prisma from '../../config/prisma'
-import { TipoDocumento, ZonaServicio } from '../../generated/prisma'
+import { TipoDocumento, ZonaServicio } from '@prisma/client'
 import { AppError } from '../../utils/AppError'
 import { ClienteCreateSchema, ClienteUpdateSchema } from '../schemas'
 

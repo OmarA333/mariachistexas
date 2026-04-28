@@ -1,7 +1,7 @@
 import prisma from '../../../config/prisma'
 import { AppError } from '../../../utils/AppError'
 import { toLocalTime, parseLocalDate, bloquearRango, dayRange } from '../../../utils/date.helpers'
-import { EstadoEnsayo } from '../../../generated/prisma'
+import { EstadoEnsayo } from '@prisma/client'
 
 
 // ─── verificarDisponibilidadReserva ───────────────────────────────────────────

@@ -1,4 +1,4 @@
-import type { Ensayo, EnsayoRepertorio } from '../../../generated/prisma'
+import type { Ensayo, EnsayoRepertorio } from '@prisma/client'
 import type { RehearsalResponse } from '../../../types/interfaces'
 import { toLocalDate, toLocalTime } from '../../../utils/date.helpers'
 

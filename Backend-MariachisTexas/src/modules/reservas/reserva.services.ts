@@ -10,7 +10,7 @@ import { mapToReservation, mapToPublicReservation } from './helpers/Reserva.mapp
 import { verificarDisponibilidadReserva, getAvailableHours, validarServiciosReserva } from './helpers/Reserva.validators'
 import type { ReservaConRelaciones, ReservaPublica } from './helpers/Reserva.mappers'
 import type { ReservaCreateInput, ReservaUpdateInput, ServicioSeleccionado, ReservationResponse } from '../../types/interfaces'
-import type { EstadoReserva } from '../../generated/prisma'
+import type { EstadoReserva } from '@prisma/client'
 
 // ─── QUERY ─────────────────────────────────────────────────────
 const reservaInclude = {

@@ -1,4 +1,4 @@
-import type { Repertorio } from '../../../generated/prisma'
+import type { Repertorio } from '@prisma/client'
 import type { RepertorioCreateInput, SongResponse } from '../../../types/interfaces'
 
 // ─── mapToSong ────────────────────────────────────────────────────────────────

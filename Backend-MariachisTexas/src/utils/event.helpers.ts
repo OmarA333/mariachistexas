@@ -1,4 +1,4 @@
-import { TipoEvento } from '../generated/prisma'
+import { TipoEvento } from '@prisma/client'
 
 export const mapEventType = (tipo: string): TipoEvento => {
   const map: Record<string, TipoEvento> = {
