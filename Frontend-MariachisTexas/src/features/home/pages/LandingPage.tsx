@@ -81,7 +81,7 @@ export const LandingPage: React.FC<Props> = ({ onNavigate }) => {
                 initial={{ scale: 1 }}
                 animate={{ scale: 1.1 }}
                 transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                src="//images/Mariachis-16.jpeg" 
+                src="/images/Mariachis-16.jpeg" 
                 alt=""
                 className="w-full h-full object-cover object-[75%_center]" 
             />

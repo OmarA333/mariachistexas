@@ -284,7 +284,7 @@ return (
       <div className="relative h-[280px] w-full overflow-hidden border-b border-white/5">
         <div className="absolute inset-0">
           <img 
-            src="//images/profile-bg.png" 
+            src="/images/profile-bg.png" 
             alt="Hero Background" 
             className="w-full h-full object-cover scale-105 blur-[2px] opacity-40"
           />
