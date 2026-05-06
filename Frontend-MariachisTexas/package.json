@@ -22,6 +22,7 @@
     "react-hot-toast": "^2.6.0",
     "recharts": "^3.7.0",
     "save-dev": "^0.0.1-security",
+    "serve": "^14.2.6",
     "zod": "^4.3.6"
   },
   "devDependencies": {
