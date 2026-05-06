@@ -91,7 +91,7 @@ export const registrarCliente = async (data: unknown) => {
   })
 
   try {
-    await transporter.sendMail({ from: process.env.MAIL_FROM, to: usuario.email, ...mail })
+    // await transporter.sendMail({ from: process.env.MAIL_FROM, to: usuario.email, ...mail })
   } catch (err) {
     console.error('❌ Error enviando correo de bienvenida:', err)
   }
@@ -196,7 +196,7 @@ export const recuperarPassword = async (email: string) => {
   // Enviar email
   const mail = emailOtp({ nombre: usuario.nombre, otp })
   try {
-    await transporter.sendMail({ from: process.env.MAIL_FROM, to: usuario.email, ...mail })
+    // await transporter.sendMail({ from: process.env.MAIL_FROM, to: usuario.email, ...mail })
   } catch (err) {
     console.error('❌ Error enviando correo OTP:', err)
   }
