@@ -41,6 +41,7 @@ app.use(cors({
     const allowed = [
       'http://localhost:3001',
       'http://localhost:3002',
+      'https://zooming-comfort-production-2244.up.railway.app',
     ]
 
     // Sin origin = app móvil nativa o Postman ✅
@@ -48,6 +49,11 @@ app.use(cors({
 
     // Cualquier puerto de localhost = Flutter web ✅
     if (origin.startsWith('http://localhost:')) {
+      return callback(null, true)
+    }
+
+    // Cualquier subdominio de Vercel ✅
+    if (origin.endsWith('.vercel.app')) {
       return callback(null, true)
     }
 
