@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 
 const api: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL ?? 'https://mariachistexas-production.up.railway.app/api',
   headers: { 'Content-Type': 'application/json' },
 })
 
