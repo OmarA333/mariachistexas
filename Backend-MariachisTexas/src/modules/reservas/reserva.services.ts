@@ -364,13 +364,12 @@ export const createReserva = async (data: ReservaCreateInput, isAdmin = false): 
     anticipo,
     loginUrl: `${(process.env.FRONTEND_URL ?? '').replace(/\/$/, '')}/login`,
   })
-  await transporter.sendMail({ from: process.env.MAIL_FROM, to: cliente.email, ...mail })
-    .then(info => {
-      console.log('✅ Correo reserva creada enviado a:', cliente.email)
-      const previewUrl = (nodemailer as any).getTestMessageUrl?.(info)
-      if (previewUrl) console.log('📧 Preview URL:', previewUrl)
-    })
-    .catch(err => console.error('❌ Error enviando correo de reserva:', err))
+  try {
+    await transporter.sendMail({ from: process.env.MAIL_FROM, to: cliente.email, ...mail })
+    console.log('✅ Correo reserva creada enviado a:', cliente.email)
+  } catch (err) {
+    console.error('❌ Error enviando correo de reserva:', err)
+  }
 
   return getReservaById(reserva.id)
 }
