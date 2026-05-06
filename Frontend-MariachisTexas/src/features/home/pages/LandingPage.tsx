@@ -81,7 +81,7 @@ export const LandingPage: React.FC<Props> = ({ onNavigate }) => {
                 initial={{ scale: 1 }}
                 animate={{ scale: 1.1 }}
                 transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                src="//images/Mariachis 16.jpeg" 
+                src="//images/Mariachis-16.jpeg" 
                 alt=""
                 className="w-full h-full object-cover object-[75%_center]" 
             />
@@ -362,7 +362,7 @@ export const LandingPage: React.FC<Props> = ({ onNavigate }) => {
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
               <img 
-                  src="/images/Mariachis 15.jpeg"
+                  src="/images/Mariachis-15.jpeg"
                   /////imagen repertorio 
                   className="w-full h-full object-cover opacity-20 blur-sm"
               />
@@ -380,7 +380,7 @@ export const LandingPage: React.FC<Props> = ({ onNavigate }) => {
                     className="w-64 h-64 md:w-80 md:h-80 flex-shrink-0 relative rounded-xl overflow-hidden shadow-2xl group"
                   >
                       <img 
-                          src="/images/Mariachis 11.jpeg"
+                          src="/images/Mariachis-11.jpeg"
                           alt="Repertoire Cover" 
                           //////imagen repertorio
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -450,15 +450,15 @@ export const LandingPage: React.FC<Props> = ({ onNavigate }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                      "/images/Mariachis 10.jpeg",
-                      "/images/Mariachis 7.jpeg",
-                      "/images/Mariachis 12.jpeg",
-                      "/images/Mariachis 13.jpeg",
-                      "/images/Mariachis 9.jpeg",
-                      "/images/Mariachis 15.jpeg",
-                      "/images/Mariachis 16.jpeg",
-                      "/images/Mariachis 17.jpeg",
-                      "/images/Mariachis 14.jpeg",
+                      "/images/Mariachis-10.jpeg",
+                      "/images/Mariachis-7.jpeg",
+                      "/images/Mariachis-12.jpeg",
+                      "/images/Mariachis-13.jpeg",
+                      "/images/Mariachis-9.jpeg",
+                      "/images/Mariachis-15.jpeg",
+                      "/images/Mariachis-16.jpeg",
+                      "/images/Mariachis-17.jpeg",
+                      "/images/Mariachis-14.jpeg",
                       
                   ].map((img, idx) => (
                       <motion.div 

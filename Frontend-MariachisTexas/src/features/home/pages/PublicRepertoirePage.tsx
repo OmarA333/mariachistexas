@@ -180,7 +180,7 @@ return (
             animate={{ opacity: 1, scale: 1 }}
             className="w-52 h-52 md:w-64 md:h-64 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex-shrink-0 rounded-xl overflow-hidden group"
         >
-            <img src="/images/Mariachis 10.jpeg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            <img src="/images/Mariachis-10.jpeg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
         </motion.div>
         
         <div className="flex flex-col gap-2 mb-2 flex-1 items-start text-left">
