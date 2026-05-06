@@ -22,6 +22,9 @@ import { notFoundHandler, errorHandler } from './middlewares/errorHandler'
 
 const app = express()
 
+// ─── TRUST PROXY (Railway / reverse proxy) ────────────────────────────────────
+app.set('trust proxy', 1)
+
 // ─── SEGURIDAD ────────────────────────────────────────────────────────────────
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
