@@ -365,7 +365,7 @@ export const createReserva = async (data: ReservaCreateInput, isAdmin = false): 
     loginUrl: `${(process.env.FRONTEND_URL ?? '').replace(/\/$/, '')}/login`,
   })
   try {
-    // await transporter.sendMail({ from: process.env.MAIL_FROM, to: cliente.email, ...mail })
+    await transporter.sendMail({ from: process.env.MAIL_FROM, to: cliente.email, ...mail })
     console.log('✅ Correo reserva creada enviado a:', cliente.email)
   } catch (err) {
     console.error('❌ Error enviando correo de reserva:', err)

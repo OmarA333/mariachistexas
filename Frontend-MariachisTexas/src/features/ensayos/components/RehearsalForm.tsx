@@ -38,7 +38,7 @@ const filteredSongs = availableSongs.filter(song =>
 );
 
 return (
-    <form id="rehearsal-form" onSubmit={onSubmit} className="flex flex-col md:flex-row h-full">
+    <form noValidate id="rehearsal-form" onSubmit={onSubmit} className="flex flex-col md:flex-row h-full">
         
         {/* COLUMNA IZQUIERDA: Datos del Ensayo */}
         <div className="w-full md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-slate-100 bg-white space-y-6">

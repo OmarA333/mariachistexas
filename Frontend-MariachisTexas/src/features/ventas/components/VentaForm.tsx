@@ -33,7 +33,7 @@ export const VentaForm: React.FC<Props> = ({
   const totalReserva = selectedReserva ? selectedReserva.totalAmount : 0;
 
   return (
-    <form id="venta-form" onSubmit={onSubmit} className="space-y-4">
+    <form noValidate id="venta-form" onSubmit={onSubmit} className="space-y-4">
         
         {/* Pestañas de Tipo de Venta */}
         <div className="flex bg-slate-100 p-1 rounded-lg mb-4">

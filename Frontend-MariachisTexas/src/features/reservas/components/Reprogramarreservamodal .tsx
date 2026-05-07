@@ -200,7 +200,7 @@ const loadDateData = async (date: string) => {
         )}
 
         {/* Cuerpo del formulario */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto custom-scrollbar">
+        <form noValidate onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto custom-scrollbar">
 
           {/* Fecha y hora actuales (solo lectura) */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-1">

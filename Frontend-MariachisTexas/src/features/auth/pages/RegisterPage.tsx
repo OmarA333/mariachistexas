@@ -207,7 +207,7 @@ export const RegisterPage: React.FC<Props> = ({ onNavigate }) => {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form noValidate onSubmit={handleSubmit} className="space-y-6">
 
             {/* ── Foto de perfil con Cloudinary ─────────────────────────── */}
             <div className="flex flex-col items-center gap-2 mb-6">

@@ -335,7 +335,7 @@ export const convertirCotizacion = async (id: number) => {
       registerUrl,   loginUrl,
     })
     try {
-      // await transporter.sendMail({ from: process.env.MAIL_FROM, to: emailDestino, ...mail })
+      await transporter.sendMail({ from: process.env.MAIL_FROM, to: emailDestino, ...mail })
       console.log('✅ Correo cotización aprobada enviado a:', emailDestino)
     } catch (err) {
       console.error('❌ Error enviando correo cotización aprobada:', err)

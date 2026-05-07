@@ -125,6 +125,16 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      /* Suprimir tooltips nativos del navegador en validación de formularios */
+      input:invalid, select:invalid, textarea:invalid {
+        box-shadow: none;
+      }
+      input::-webkit-validation-bubble,
+      select::-webkit-validation-bubble,
+      textarea::-webkit-validation-bubble {
+        display: none;
+      }
     </style>
   <script type="importmap">
 {

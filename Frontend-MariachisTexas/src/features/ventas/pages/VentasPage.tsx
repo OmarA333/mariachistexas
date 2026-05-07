@@ -134,7 +134,7 @@ const FinalPaymentModal: React.FC<FinalPaymentModalProps> = ({ isOpen, onClose, 
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form noValidate onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Método de Pago</label>
               <select

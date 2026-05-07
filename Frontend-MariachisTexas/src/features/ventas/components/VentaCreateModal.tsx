@@ -152,7 +152,7 @@ export const VentaCreateModal: React.FC<Props> = ({ isOpen, onClose, onSave }) =
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit} className="space-y-4">
 
             {/* Cliente fijo */}
             <div>

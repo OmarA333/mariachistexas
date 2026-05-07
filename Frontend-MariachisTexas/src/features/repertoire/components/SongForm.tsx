@@ -157,7 +157,7 @@ export const SongForm: React.FC<Props> = ({
   }
 
   return (
-    <form id="song-form" onSubmit={onSubmit} className="flex flex-col md:flex-row h-full gap-6">
+    <form noValidate id="song-form" onSubmit={onSubmit} className="flex flex-col md:flex-row h-full gap-6">
 
 
       {/* ── Columna izuqierada de el formulario : Portada  ──────────────────────────────────── */}

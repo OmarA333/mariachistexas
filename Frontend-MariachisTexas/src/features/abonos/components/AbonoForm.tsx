@@ -50,7 +50,7 @@ export const AbonoForm: React.FC<Props> = ({
   const amountNumber = Number(formData.amount);
 
   return (
-    <form id="abono-form" onSubmit={onSubmit} className="space-y-4">
+    <form noValidate id="abono-form" onSubmit={onSubmit} className="space-y-4">
         
         {/* Contexto: Selección de Reserva */}
         <div>

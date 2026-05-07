@@ -12,7 +12,7 @@ interface Props {
 export const ServiceForm: React.FC<Props> = ({ formData, onChange, errors }) => {
     
 return (
-    <form className="space-y-6">
+    <form noValidate className="space-y-6">
 <div className="space-y-4">
         {/* Nombre */}
         <div>

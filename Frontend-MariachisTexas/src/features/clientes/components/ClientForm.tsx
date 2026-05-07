@@ -30,7 +30,7 @@ export const ClientForm: React.FC<Props> = ({ formData, onChange, onSubmit, erro
   const maxDateString = maxDate.toISOString().split('T')[0];
 
   return (
-    <form id="client-form" onSubmit={onSubmit} className="space-y-8">
+    <form noValidate id="client-form" onSubmit={onSubmit} className="space-y-8">
         
         {/* 1. Información Personal y Foto */}
         <div>

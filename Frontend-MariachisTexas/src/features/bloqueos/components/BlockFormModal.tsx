@@ -123,7 +123,7 @@ export const BlockFormModal: React.FC<Props> = ({ isOpen, onClose, onSave, initi
 
         {/* Form Content */}
         <div className="flex-1 overflow-y-auto p-8 custom-scrollbar bg-white">
-            <form id="block-form" onSubmit={handleSubmit} className="space-y-6">
+            <form noValidate id="block-form" onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* Tipo de Bloqueo */}
                 <div>

@@ -28,7 +28,7 @@ export const RoleForm: React.FC<Props> = ({
   registerFieldRef,
 }) => {
   return (
-    <form id="role-form" onSubmit={onSubmit} className="space-y-8">
+    <form noValidate id="role-form" onSubmit={onSubmit} className="space-y-8">
       <div className="space-y-5">
         <div>
           <label className="mb-2 block pl-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">

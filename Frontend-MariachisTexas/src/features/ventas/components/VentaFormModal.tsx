@@ -96,7 +96,7 @@ export const VentaFormModal: React.FC<Props> = ({ isOpen, onClose, onSave }) => 
 
         {/* Form Content */}
         <div className="p-8 space-y-6">
-            <form id="venta-form" onSubmit={handleSubmit}>
+            <form noValidate id="venta-form" onSubmit={handleSubmit}>
                 
                 {/* Selector de Tipo */}
                 <div className="flex bg-slate-100 p-1 rounded-xl mb-6">

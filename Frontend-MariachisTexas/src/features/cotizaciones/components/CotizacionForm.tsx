@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { User, Calendar, MapPin, Search, ChevronDown, DollarSign, ShieldAlert, AlertTriangle, Calculator, Plus, Minus, Package, Music, X, Check, ArrowLeft, Lock, ArrowRight, Sparkles, AlertCircle } from 'lucide-react';
 import { User as UserType, Song, Service, TIPOS_EVENTO } from '@/types';
 import { CustomDatePicker } from '@/shared/components/CustomDatePicker';
+import toast from 'react-hot-toast';
 
 export interface CotizacionFormErrors {
   clientName?: string
@@ -119,7 +120,7 @@ export const CotizacionForm: React.FC<Props> = ({
       ? (formData.selectedServices?.find((s: any) => s.serviceId === String(extraSongsService.id))?.quantity || 0)
       : 0
     if (!isSelected && currentSongCount >= 7 + currentExtraSongs) {
-      alert(`Has alcanzado el límite de ${7 + currentExtraSongs} canciones.`)
+      toast.error(`Has alcanzado el límite de ${7 + currentExtraSongs} canciones.`)
       return
     }
     onToggleSong(id)

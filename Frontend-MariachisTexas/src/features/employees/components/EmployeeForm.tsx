@@ -34,7 +34,7 @@ export const EmployeeForm: React.FC<Props> = ({ formData, onChange, onSubmit, sh
   const maxDateString = maxDate.toISOString().split('T')[0];
 
   return (
-    <form id="employee-form" onSubmit={onSubmit} className="space-y-8">
+    <form noValidate id="employee-form" onSubmit={onSubmit} className="space-y-8">
         
         {/* 1. Foto y Credenciales */}
         <div className="flex flex-col md:flex-row gap-8 items-start">

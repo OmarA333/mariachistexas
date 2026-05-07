@@ -83,7 +83,7 @@ export const ResetPasswordPage: React.FC<Props> = ({ email, otp, onNavigate }) =
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form noValidate onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="block text-xs font-bold text-primary-500 uppercase tracking-widest mb-2">Nueva Contraseña</label>
                   <div className="relative group">

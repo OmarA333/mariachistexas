@@ -88,7 +88,7 @@ export const VerifyOtpPage: React.FC<Props> = ({ email, onVerified, onNavigate }
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit}>
             {/* Inputs OTP */}
             <div className="flex justify-center gap-3 mb-8" onPaste={handlePaste}>
               {otp.map((digit, i) => (

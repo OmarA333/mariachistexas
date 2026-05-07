@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { User, Calendar, MapPin, Search, ChevronDown, DollarSign, ShieldAlert, AlertTriangle, Calculator, Plus, Minus, Package, Music, X, Check, ArrowLeft, Lock } from 'lucide-react';
 import { User as UserType, Song, Service, TIPOS_EVENTO } from '@/types';
 import { CustomDatePicker } from '@/shared/components/CustomDatePicker';
+import toast from 'react-hot-toast';
 
 interface SelectedService {
   serviceId: string;
@@ -118,7 +119,7 @@ export const ReservaForm: React.FC<Props> = ({
   const handleToggleSong = (id: string) => {
     const isSelected = formData.repertoireIds?.includes(id);
     if (!isSelected && currentSongCount >= maxSongs) {
-      alert(`Has alcanzado el límite de ${maxSongs} canciones. Agrega "Canciones Extra" en Servicios Adicionales.`);
+      toast.error(`Has alcanzado el límite de ${maxSongs} canciones. Agrega "Canciones Extra" en Servicios Adicionales.`);
       return;
     }
     onToggleSong(id);
@@ -178,7 +179,7 @@ export const ReservaForm: React.FC<Props> = ({
   const [clientSearch, setClientSearch] = useState('');
   const [showClientDropdown, setShowClientDropdown] = useState(false);
   return (
-    <form id="reserva-form" onSubmit={onSubmit} className="flex flex-col lg:flex-row h-full">
+    <form noValidate id="reserva-form" onSubmit={onSubmit} className="flex flex-col lg:flex-row h-full">
 
       {/* COLUMNA IZQUIERDA */}
       <div className={`w-full lg:w-7/12 p-8 lg:p-10 space-y-10 ${isPublic ? 'bg-white' : 'bg-white border-r border-slate-100'}`}>

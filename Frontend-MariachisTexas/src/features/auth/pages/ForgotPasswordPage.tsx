@@ -51,7 +51,7 @@ export const ForgotPasswordPage: React.FC<Props> = ({ onNavigate, onEmailSent })
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form noValidate onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-xs font-bold text-primary-500 uppercase tracking-widest mb-2">Correo Registrado</label>
               <div className="relative group">

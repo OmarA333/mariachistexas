@@ -126,7 +126,7 @@ export const UserForm: React.FC<Props> = ({
     errors[field] ? <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle size={12} /> {errors[field]}</p> : null;
 
   return (
-    <form id="user-form" onSubmit={onSubmit} className="space-y-8">
+    <form noValidate id="user-form" onSubmit={onSubmit} className="space-y-8">
 
       {/* Rol y Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
