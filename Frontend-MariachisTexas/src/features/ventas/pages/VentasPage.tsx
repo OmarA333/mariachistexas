@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Search, CheckCircle, AlertCircle, X, Eye, Download, CreditCard, Calendar, User, CheckSquare, Clock, Plus } from 'lucide-react';
+import { Search, CheckCircle, AlertCircle, X, Eye, Download, CreditCard, Calendar, User, CheckSquare, Clock, Plus, DollarSign, MapPin, Package, Music, FileText, Mail } from 'lucide-react';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { UserRole } from '@/types';
 import api from '@/shared/api/api';
@@ -200,170 +200,226 @@ const SaleDetailModal: React.FC<{ isOpen: boolean; onClose: () => void; sale: Sa
   if (!isOpen || !sale) return null;
   const isFinalizado = sale.status === 'Finalizado' || (sale.pendingAmount ?? 0) <= 0;
 
+  const getStatusColor = () => {
+    if (isFinalizado) return 'bg-blue-50 text-blue-600 border-blue-200';
+    return 'bg-emerald-50 text-emerald-600 border-emerald-200';
+  };
+
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden animate-fade-in-up flex flex-col max-h-[90vh]">
+
+      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
 
         {/* Header */}
-        <div className="px-6 py-5 flex items-center justify-between shrink-0 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center">
-              <Eye className="text-red-600" size={18} />
+        <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50 shrink-0">
+          <div>
+            <div className="flex items-center gap-3">
+              <h3 className="text-xl font-serif font-bold text-slate-800">Venta</h3>
+              <span className="font-mono text-sm text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">#{sale.id.replace('RES-','')}</span>
+              <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest border ${getStatusColor()}`}>
+                {isFinalizado ? 'Finalizado' : 'Confirmado'}
+              </span>
             </div>
-            <div>
-              <h3 className="text-base font-serif font-bold text-slate-800 uppercase tracking-wide">{sale.concept}</h3>
-              <p className="text-[10px] text-slate-400 font-medium mt-0.5">{sale.clientName}</p>
-            </div>
+            <p className="text-xs text-slate-500 mt-2 flex items-center gap-2">
+              <Calendar size={12} /> {sale.eventDate ?? sale.date}
+            </p>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 p-2 rounded-lg transition-colors">
-            <X size={18} />
+          <button onClick={onClose} className="p-2 hover:bg-slate-200 rounded-lg transition-colors text-slate-400">
+            <X size={20} />
           </button>
         </div>
 
-        {/* Scrollable body */}
-        <div className="p-5 space-y-4 overflow-y-auto flex-1">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
+          <div className="flex flex-col md:flex-row min-h-full">
 
-          {/* Status */}
-          <div className={`flex items-center justify-between p-4 rounded-2xl border ${isFinalizado ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}`}>
-            <div className="flex items-center gap-2">
-              <div className={`w-7 h-7 rounded-full flex items-center justify-center ${isFinalizado ? 'bg-emerald-100' : 'bg-red-100'}`}>
-                <CheckCircle size={14} className={isFinalizado ? 'text-emerald-600' : 'text-red-500'} />
+            {/* ── COLUMNA IZQUIERDA ─────────────────────────────────────── */}
+            <div className="w-full md:w-1/2 p-8 space-y-6 border-b md:border-b-0 md:border-r border-slate-100">
+
+              {/* Cliente */}
+              <div className="bg-slate-50/50 rounded-2xl border border-slate-100 p-5">
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <User size={14} className="text-primary-600" /> Cliente
+                </h4>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400"><User size={14} /></div>
+                    <div>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase">Nombre</p>
+                      <p className="font-bold text-slate-700 text-sm">{sale.clientName}</p>
+                    </div>
+                  </div>
+                  {sale.clientEmail && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400"><Mail size={14} /></div>
+                      <div className="overflow-hidden">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase">Email</p>
+                        <p className="font-bold text-slate-700 text-sm truncate">{sale.clientEmail}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <span className={`text-xs font-bold uppercase tracking-widest ${isFinalizado ? 'text-emerald-700' : 'text-red-600'}`}>
-                {isFinalizado ? 'Pagado Completamente' : 'Venta Completa'}
-              </span>
+
+              {/* Total */}
+              <div className="bg-slate-900 text-white p-6 rounded-2xl flex items-center justify-between shadow-lg">
+                <div>
+                  <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Monto Total</p>
+                  <p className="text-[10px] text-slate-500">Moneda: COP</p>
+                </div>
+                <p className="text-3xl font-serif font-bold tracking-tight flex items-center gap-1">
+                  <DollarSign size={24} className="text-emerald-500" />
+                  {(sale.totalAmount ?? sale.amount).toLocaleString('es-CO')}
+                </p>
+              </div>
+
+              {/* Historial de pagos */}
+              {sale.abonos && sale.abonos.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <CreditCard size={14} className="text-primary-600" /> Historial de Pagos
+                  </h4>
+                  <div className="space-y-2">
+                    {sale.abonos.map((abono, idx) => (
+                      <div key={abono.id} className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div>
+                          <p className="text-xs font-bold text-slate-700">{idx === 0 ? '1er Abono' : '2do Abono'}</p>
+                          <p className="text-[10px] text-slate-400">
+                            {new Date(abono.date).toLocaleDateString('es-CO')} · {metodoPagoLabel[abono.method] ?? abono.method}
+                          </p>
+                        </div>
+                        <span className="text-sm font-bold text-emerald-600">${abono.amount.toLocaleString('es-CO')}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {!isFinalizado && (sale.pendingAmount ?? 0) > 0 && (
+                    <div className="flex items-center justify-between p-3 mt-2 bg-red-50 rounded-xl border border-red-100">
+                      <span className="text-xs font-bold text-red-700">Saldo Pendiente</span>
+                      <span className="text-sm font-bold text-red-700">${(sale.pendingAmount ?? 0).toLocaleString('es-CO')}</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-            <span className={`text-lg font-serif font-black ${isFinalizado ? 'text-emerald-800' : 'text-red-700'}`}>
-              ${(sale.totalAmount ?? sale.amount).toLocaleString('es-CO')}
-            </span>
+
+            {/* ── COLUMNA DERECHA ───────────────────────────────────────── */}
+            <div className="w-full md:w-1/2 p-8 space-y-6 bg-slate-50">
+
+              {/* Evento */}
+              {(sale.eventDate || sale.eventTime || sale.eventType || sale.homenajeado || sale.eventLocation) && (
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <Calendar size={14} className="text-primary-600" /> Evento
+                  </h4>
+                  <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm space-y-4">
+                    {sale.homenajeado && (
+                      <div className="pb-4 border-b border-slate-50">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Homenajeado</p>
+                        <p className="font-bold text-slate-800 flex items-center gap-2"><User size={12} /> {sale.homenajeado}</p>
+                      </div>
+                    )}
+                    <div className="grid grid-cols-2 gap-4">
+                      {sale.eventType && (
+                        <div>
+                          <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Tipo</p>
+                          <p className="font-bold text-slate-800 text-sm">{sale.eventType}</p>
+                        </div>
+                      )}
+                      {sale.eventDate && (
+                        <div>
+                          <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Fecha</p>
+                          <p className="font-bold text-slate-800 flex items-center gap-2"><Calendar size={12} /> {sale.eventDate}</p>
+                        </div>
+                      )}
+                      {sale.eventTime && (
+                        <div>
+                          <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Horario</p>
+                          <p className="font-bold text-slate-800 flex items-center gap-2">
+                            <Clock size={12} /> {sale.eventTime}{sale.eventEndTime ? ` - ${sale.eventEndTime}` : ''}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    {sale.eventLocation && (
+                      <div className="pt-2 border-t border-slate-50">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">Dirección</p>
+                        <p className="font-bold text-slate-800 flex items-center gap-2"><MapPin size={12} /> {sale.eventLocation}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Servicios */}
+              {sale.services && sale.services.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <Package size={14} className="text-primary-600" /> Servicios Contratados
+                  </h4>
+                  <div className="space-y-2">
+                    {sale.services.map((s, i) => (
+                      <div key={i} className="flex justify-between items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div>
+                          <p className="text-sm font-bold text-slate-700">{s.nombre}</p>
+                          <p className="text-[10px] text-slate-400">${Number(s.precio).toLocaleString('es-CO')} c/u · x{s.cantidad}</p>
+                        </div>
+                        <p className="text-sm font-bold text-orange-600">${(s.precio * s.cantidad).toLocaleString('es-CO')}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Repertorio */}
+              {sale.repertoire && sale.repertoire.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Music size={14} className="text-primary-600" /> Repertorio ({sale.repertoire.length} canciones)
+                  </h4>
+                  <div className="space-y-2 max-h-[200px] overflow-y-auto custom-scrollbar pr-1">
+                    {sale.repertoire.map((r, i) => (
+                      <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-500 shrink-0">
+                          <Music size={14} />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-slate-700">{r.titulo}</p>
+                          <p className="text-[10px] text-slate-400 uppercase">{r.artista}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Notas */}
+              {sale.notes && (
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <FileText size={14} className="text-primary-600" /> Notas
+                  </h4>
+                  <div className="p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <p className="text-sm text-slate-600 italic">"{sale.notes}"</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Detalles del evento */}
-          {(sale.homenajeado || sale.eventTime || sale.eventLocation || sale.eventDate || sale.notes) && (
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Detalles del Evento</p>
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-2 text-xs">
-                {sale.eventDate && (
-                  <div className="flex justify-between">
-                    <span className="text-slate-400 flex items-center gap-1"><Calendar size={11} /> Fecha</span>
-                    <span className="font-bold text-slate-700">{sale.eventDate}</span>
-                  </div>
-                )}
-                {sale.eventTime && (
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Horario</span>
-                    <span className="font-bold text-slate-700">
-                      {sale.eventTime}{sale.eventEndTime ? ` — ${sale.eventEndTime}` : ''}
-                    </span>
-                  </div>
-                )}
-                {sale.eventType && (
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Tipo de evento</span>
-                    <span className="font-bold text-slate-700">{sale.eventType}</span>
-                  </div>
-                )}
-                {sale.homenajeado && (
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Homenajeado</span>
-                    <span className="font-bold text-slate-700">{sale.homenajeado}</span>
-                  </div>
-                )}
-                {sale.eventLocation && (
-                  <div className="flex justify-between gap-4">
-                    <span className="text-slate-400 shrink-0">Dirección</span>
-                    <span className="font-bold text-slate-700 text-right">{sale.eventLocation}</span>
-                  </div>
-                )}
-                {sale.notes && (
-                  <div className="pt-1 border-t border-slate-200">
-                    <span className="text-slate-400 block mb-0.5">Notas</span>
-                    <span className="text-slate-600">{sale.notes}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Servicios */}
-          {sale.services && sale.services.length > 0 && (
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Servicios Contratados</p>
-              <div className="space-y-1.5">
-                {sale.services.map((s, i) => (
-                  <div key={i} className="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-                    <span className="text-xs text-slate-700">{s.nombre}{s.cantidad > 1 ? ` ×${s.cantidad}` : ''}</span>
-                    <span className="text-xs font-bold text-slate-800">${(s.precio * s.cantidad).toLocaleString('es-CO')}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Repertorio */}
-          {sale.repertoire && sale.repertoire.length > 0 && (
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
-                Repertorio ({sale.repertoire.length} canciones)
-              </p>
-              <div className="max-h-40 overflow-y-auto space-y-1.5 pr-1">
-                {sale.repertoire.map((r, i) => (
-                  <div key={i} className="flex items-center gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-100">
-                    <span className="text-[10px] text-slate-400 w-4 text-right shrink-0">{i + 1}</span>
-                    <div>
-                      <p className="text-xs font-bold text-slate-700 leading-none">{r.titulo}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{r.artista}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Historial de pagos */}
-          {sale.abonos && sale.abonos.length > 0 && (
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Historial de Pagos</p>
-              <div className="space-y-2">
-                {sale.abonos.map((abono, idx) => (
-                  <div key={abono.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
-                    <div>
-                      <p className="text-xs font-bold text-slate-700">
-                        {idx === 0 ? '1er Abono' : '2do Abono'}
-                      </p>
-                      <p className="text-[10px] text-slate-400">
-                        {new Date(abono.date).toLocaleDateString('es-CO')} · {metodoPagoLabel[abono.method] ?? abono.method}
-                      </p>
-                    </div>
-                    <span className="text-sm font-bold text-emerald-600">${abono.amount.toLocaleString('es-CO')}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Saldo pendiente */}
-          {!isFinalizado && (sale.pendingAmount ?? 0) > 0 && (
-            <div className="flex items-center justify-between p-3 bg-red-50 rounded-xl border border-red-100">
-              <span className="text-xs font-bold text-red-700">Saldo Pendiente</span>
-              <span className="text-sm font-bold text-red-700">${(sale.pendingAmount ?? 0).toLocaleString('es-CO')}</span>
-            </div>
-          )}
         </div>
 
         {/* Footer */}
-        <div className="px-5 pb-5 pt-3 flex gap-3 shrink-0 border-t border-slate-100">
+        <div className="p-6 border-t border-slate-100 bg-white flex gap-3 justify-end shrink-0">
           <button onClick={onClose}
-            className="flex-1 py-3 border border-slate-200 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-50 transition-colors">
-            Cerrar
+            className="px-8 py-3 bg-white border border-slate-200 text-slate-600 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-slate-100 transition-colors shadow-sm">
+            Cerrar Detalle
           </button>
           {sale.reservationId && (
             <button
               onClick={() => onDownload(sale.reservationId!)}
-              className="flex-[2] py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-red-900/20 hover:-translate-y-0.5 transition-all"
+              className="px-8 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl flex items-center gap-2 text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              <Download size={14} /> Descargar PDF
+              <Download size={16} /> Descargar PDF
             </button>
           )}
         </div>
